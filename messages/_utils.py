@@ -78,7 +78,11 @@ def check_valid(msg_type, attr, value, func, exec_info):
                 if not func(v):
                     raise InvalidMessageInputError(msg_type, attr, value, exec_info)
         else:
-            if not func(value):
+            if exec_info == "phone number" and value.startswith('+7'):
+                res = func(value, 'ru-RU')
+            else:
+                res = func(value)
+            if not res:
                 raise InvalidMessageInputError(msg_type, attr, value, exec_info)
 
 
