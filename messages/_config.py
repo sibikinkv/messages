@@ -142,7 +142,7 @@ def update_config_data(msg, cfg):
         :cfg: (jsonconfig.Config) config instance.
     """
     for attr in msg:
-        if attr in cfg.data[msg.profile] and attr is not "auth":
+        if attr in cfg.data[msg.profile] and attr != "auth":
             cfg.data[msg.profile][attr] = getattr(msg, attr)
 
 
