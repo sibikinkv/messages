@@ -35,14 +35,14 @@ def test_telegram_with_empty_subject(get_telegram):
 
 def test_telegram_with_attachment(get_telegram):
     t = get_telegram
-    t.attachments = 'https://sun9-26.userapi.com/impf/QfKkHYUE8b1ZLb-7RPgrBqZlhNiBM5Sv9DLpAA/CoC8rWCVHlw.jpg?size=800x800&quality=96&sign=b26802ca7be47a62a27e009247e55a42&type=album'
+    t.attachments = 'https://cutt.ly/zx0ClAH'
     t.send()
 
 
 def test_telegram_with_attachment_and_empty_body(get_telegram):
     t = get_telegram
     t.body = ''
-    t.attachments = 'https://sun9-26.userapi.com/impf/QfKkHYUE8b1ZLb-7RPgrBqZlhNiBM5Sv9DLpAA/CoC8rWCVHlw.jpg?size=800x800&quality=96&sign=b26802ca7be47a62a27e009247e55a42&type=album'
+    t.attachments = 'https://cutt.ly/zx0ClAH'
     t.send()
 
 

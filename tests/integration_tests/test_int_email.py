@@ -56,8 +56,7 @@ def test_email_empty_body(get_email):
 
 
 def test_email_bad_receiver(get_email):
-    e = get_email
-    e.to = 'kostyan.9632'
-
-    with pytest.raises(InvalidMessageInputError):
+    with pytest.raises(Exception):
+        e = get_email
+        e.to = 'kostyan.9632'
         e.send()
