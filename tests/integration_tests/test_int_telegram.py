@@ -1,7 +1,13 @@
 import pytest
+import int_setup
 
 from messages._exceptions import MessageSendError
 from messages.telegram import TelegramBot
+
+
+
+pytestmark = pytest.mark.skipif(not int_setup.integration_test_configured('telegrambot'),
+    reason='Tester not configured for messages.telegram.TelegramBot')
 
 
 @pytest.fixture()

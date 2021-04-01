@@ -4,6 +4,9 @@ import int_setup
 from messages.whatsapp import WhatsApp
 from messages._exceptions import MessageSendError
 
+pytestmark = pytest.mark.skipif(not int_setup.integration_test_configured('whatsapp'),
+    reason='Tester not configured for messages.whatsapp.Whatsapp')
+
 @pytest.fixture()
 def get_whatsapp():
     return WhatsApp(to='+79216240965',
