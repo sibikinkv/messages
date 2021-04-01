@@ -1,5 +1,3 @@
-"""integration tests for text.Twilio."""
-
 import pytest
 
 import jsonconfig
@@ -8,15 +6,7 @@ from messages.text import Twilio
 from messages._exceptions import MessageSendError
 
 
-##############################################################################
-# SKIP TESTS IF ENVIRONMENT NOT PREPPED
-##############################################################################
-
 def twilio_test_configured():
-    """
-    Does the user have an 'integration_tester' config profile set up, and
-    do they have 'twilio' set up in that profile?
-    """
     with jsonconfig.Config('messages') as cfg:
         data = cfg.data
         return ('integration_tester' in cfg.data.keys()
@@ -26,11 +16,6 @@ def twilio_test_configured():
 #Skip all tests if not configured
 pytestmark = pytest.mark.skipif(not twilio_test_configured(),
     reason='Tester not configured for messages.text.Twilio')
-
-
-##############################################################################
-# FIXTURES
-##############################################################################
 
 
 @pytest.fixture()
@@ -43,10 +28,6 @@ def get_twilio():
                profile='integration_tester', save=False)
     return t
 
-
-##############################################################################
-# TESTS: Send from
-##############################################################################
 
 def test_twilio_normal_execution(get_twilio):
     t = get_twilio
