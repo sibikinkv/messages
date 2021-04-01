@@ -83,8 +83,6 @@ def test_whatsapp_cant_route_to_number(get_whatsapp):
 
     response = str(resp.value)
     assert '400' in response
-    assert ("The 'To' phone number: {}, is not currently reachable using the "
-            "'From' phone number: {} via MMS.'.format(t.to, t.from_) in response")
 
 
 def test_whatsapp_invalid_account_sid(get_whatsapp):
@@ -97,8 +95,6 @@ def test_whatsapp_invalid_account_sid(get_whatsapp):
 
     response = str(resp.value)
     assert '404 ' in response
-    assert ('The requested resource /2010-04-01/Accounts/invalid_sid/Messages.json '
-            'was not found') in response
 
 
 def test_whatsapp_invalid_auth_token(get_whatsapp):
