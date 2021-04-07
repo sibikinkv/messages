@@ -3,7 +3,7 @@ import re
 from setuptools import setup, find_packages
 
 
-# get __version__ from __init__.py
+
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 with open('messages/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
