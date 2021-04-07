@@ -9,7 +9,6 @@ from messages._exceptions import MessageSendError, InvalidMessageInputError
 
 from unittest.mock import patch
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 pytestmark = pytest.mark.skipif(not int_setup.integration_test_configured('email'),
     reason='Tester not configured for messages.email_.Email')
@@ -40,11 +39,12 @@ def get_telegram():
 @patch("messages.email_.Email.send")
 @patch("messages.telegram.TelegramBot.send")
 def test_sys_volume(mock_email_send, mock_telegram_send ,get_email, capsys, get_telegram):
+    e = get_email
+    t = get_telegram
 
     tries = 10
     succ = 0
     for _ in range(tries):
-        e = get_email
         e.to = 'kostyan.9632@gmail.com'
         e.send()
         out, err = capsys.readouterr()
@@ -53,7 +53,6 @@ def test_sys_volume(mock_email_send, mock_telegram_send ,get_email, capsys, get_
         succ += 1
 
         try:
-            t = get_telegram
             t.send()
         except MessageSendError as e:
             succ -= 1

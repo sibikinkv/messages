@@ -5,11 +5,9 @@ import int_setup
 
 from messages.email_ import Email
 from messages.telegram import TelegramBot
-from messages._exceptions import MessageSendError, InvalidMessageInputError
 
 from unittest.mock import patch
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
 
 pytestmark = pytest.mark.skipif(not int_setup.integration_test_configured('email'),
     reason='Tester not configured for messages.email_.Email')

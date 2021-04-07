@@ -43,10 +43,12 @@ def test_sys_stress(mock_email_send, mock_telegram_send ,get_email, capsys, get_
     tries = 10
     succ = 0
 
+    e = get_email
+    t = get_telegram
+
     with ThreadPoolExecutor(max_workers=tries) as executor:
         futures = []
         for _ in range(tries):
-            e = get_email
             e.to = 'kostyan.9632@gmail.com'
             e.send()
             out, err = capsys.readouterr()
@@ -58,7 +60,6 @@ def test_sys_stress(mock_email_send, mock_telegram_send ,get_email, capsys, get_
     with ThreadPoolExecutor(max_workers=tries) as executor:
         futures = []
         for _ in range(tries):
-            t = get_telegram
             futures.append(executor.submit(t.send()))
         for future in as_completed(futures):
             try:
